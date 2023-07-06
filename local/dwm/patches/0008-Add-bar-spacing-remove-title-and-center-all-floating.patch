@@ -1,0 +1,116 @@
+From 1b5fa26a0168a0cd31812ca6c2663cdd0d52b974 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Thu, 6 Jul 2023 18:34:26 +0800
+Subject: [PATCH 08/11] Add bar spacing, remove title and center all floating
+ windows
+
+---
+ config.def.h |  4 ++--
+ dwm.c        | 28 +++++++++-------------------
+ 2 files changed, 11 insertions(+), 21 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index b7f4614..f40d001 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,6 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
++static const int bar_spacing        = 2;        /* 2 is the default spacing around the bar's font */
+ static const int focusonwheel       = 0;
+ static const char *fonts[]          = { "monospace:size=10" };
+ static const char dmenufont[]       = "monospace:size=10";
+@@ -98,12 +99,11 @@ static const Key keys[] = {
+ };
+ 
+ /* button definitions */
+-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
++/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkClientWin, or ClkRootWin */
+ static const Button buttons[] = {
+ 	/* click                event mask      button          function        argument */
+ 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+ 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
+ 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+ 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+ 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+diff --git a/dwm.c b/dwm.c
+index 526c822..43dcd44 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -65,8 +65,8 @@ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
+        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
+        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
+ enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
+-enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
+-       ClkClientWin, ClkRootWin, ClkLast }; /* clicks */
++enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkClientWin,
++       ClkRootWin, ClkLast }; /* clicks */
+ 
+ typedef union {
+ 	int i;
+@@ -464,10 +464,8 @@ buttonpress(XEvent *e)
+ 			arg.ui = 1 << i;
+ 		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
+ 			click = ClkLtSymbol;
+-		else if (ev->x > selmon->ww - (int)TEXTW(stext))
+-			click = ClkStatusText;
+ 		else
+-			click = ClkWinTitle;
++			click = ClkStatusText;
+ 	} else if ((c = wintoclient(ev->window))) {
+ 		if (focusonwheel || (ev->button != Button4 && ev->button != Button5))
+ 			focus(c);
+@@ -778,15 +776,8 @@ drawbar(Monitor *m)
+ 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+ 
+ 	if ((w = m->ww - tw - x) > bh) {
+-		if (m->sel) {
+-			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+-			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
+-			if (m->sel->isfloating)
+-				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+-		} else {
+-			drw_setscheme(drw, scheme[SchemeNorm]);
+-			drw_rect(drw, x, 0, w, bh, 1, 1);
+-		}
++		drw_setscheme(drw, scheme[SchemeNorm]);
++		drw_rect(drw, x, 0, w, bh, 1, 1);
+ 	}
+ 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
+ }
+@@ -1190,6 +1181,8 @@ manage(Window w, XWindowAttributes *wa)
+ 	updatewindowtype(c);
+ 	updatesizehints(c);
+ 	updatewmhints(c);
++	c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
++	c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
+ 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
+ 	grabbuttons(c, 0);
+ 	if (!c->isfloating)
+@@ -1344,11 +1337,8 @@ propertynotify(XEvent *e)
+ 			drawbars();
+ 			break;
+ 		}
+-		if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName]) {
++		if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName])
+ 			updatetitle(c);
+-			if (c == c->mon->sel)
+-				drawbar(c->mon);
+-		}
+ 		if (ev->atom == netatom[NetWMWindowType])
+ 			updatewindowtype(c);
+ 	}
+@@ -1731,7 +1721,7 @@ setup(void)
+ 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
+ 		die("no fonts could be loaded.");
+ 	lrpad = drw->fonts->h;
+-	bh = drw->fonts->h + 2;
++	bh = drw->fonts->h + bar_spacing;
+ 	updategeom();
+ 	/* init atoms */
+ 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
+-- 
+2.40.1
+

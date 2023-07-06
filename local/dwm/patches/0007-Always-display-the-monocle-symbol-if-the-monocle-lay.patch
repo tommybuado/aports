@@ -1,0 +1,32 @@
+From e0c586607f162314d4c3455a572919d45eeff5a8 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Thu, 6 Jul 2023 18:27:56 +0800
+Subject: [PATCH 07/11] Always display the monocle-symbol if the monocle-layout
+ is activated
+
+---
+ dwm.c | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/dwm.c b/dwm.c
+index cfadbe5..526c822 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1235,14 +1235,8 @@ maprequest(XEvent *e)
+ void
+ monocle(Monitor *m)
+ {
+-	unsigned int n = 0;
+ 	Client *c;
+ 
+-	for (c = m->clients; c; c = c->next)
+-		if (ISVISIBLE(c))
+-			n++;
+-	if (n > 0) /* override layout symbol */
+-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+ 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
+ 		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+ }
+-- 
+2.40.1
+

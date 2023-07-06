@@ -11,7 +11,20 @@ depends="dmenu-virtual st-virtual"
 makedepends="libxft-dev libx11-dev libxinerama-dev"
 subpackages="$pkgname-doc"
 options="!check"
-source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz dwm.desktop"
+source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
+	dwm.desktop
+	config.h
+	patches/0001-Make-dwm-run-autostart-scripts-before-entering-the-h.patch
+	patches/0002-Allow-colors-and-rectangle-drawing-in-dwm.patch
+	patches/0003-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
+	patches/0004-Activate-the-window-as-response-to-client-request-_N.patch
+	patches/0005-Add-a-rule-option-to-switch-to-the-configured-tag-wh.patch
+	patches/0006-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
+	patches/0007-Always-display-the-monocle-symbol-if-the-monocle-lay.patch
+	patches/0008-Add-bar-spacing-remove-title-and-center-all-floating.patch
+	patches/0009-Press-MODKEY-s-default-to-make-a-client-sticky.patch
+	patches/0010-Add-gaps-between-client-windows-for-tile-layout-only.patch
+	patches/0011-Add-whitespace-in-default-status-VERSION-of-dwm.patch"
 
 provides="dwm-virtual"
 provider_priority=100
@@ -20,6 +33,7 @@ prepare() {
 	default_prepare
 	sed -i -e "/CFLAGS/{s/-Os//;s/=/+=/}" \
 		-e "/LDFLAGS/{s/=/+=/}" config.mk
+	cp -pr "$srcdir"/config.h config.h
 }
 
 build() {
@@ -37,4 +51,16 @@ package() {
 sha512sums="
 b13ac4390c7945cfb4e06bbec2cf69a9bf55867fe2babcba1a4945803a12bea88db31ad06dd06627445f8456950deb26f2d631f946c4207ae92e13f273051a51  dwm-6.4.tar.gz
 8d8a3f3e2b285dfce17da9cf4173b4841d0d7465112a1b2478d417dfb9c0b37ae98542c710464fcf0fdbe8fcef5a502f88a88a115d5c1717cf429f84797337dd  dwm.desktop
+04a9d457967577f2d8504f41b36ac5a73d6b67f52061bb9f94530608ad40ea645329e10125890af5a8da6d1857087dbf43f760862a7a73552b0c92573720fda9  config.h
+7473dd9647be089f8ac2926dba6c0ec88973ed3650fb78ceb381b29b9e74f1fde2725044ac66eb25f2d04b8d771e0db853bae234fa822c00c8a2ffc5dbc0630c  0001-Make-dwm-run-autostart-scripts-before-entering-the-h.patch
+7c2e056376f2d78f49706d8d889ed1839839e9c2f825c9cf50271d51231f99835f08b62f576bb867b90b3465dff841007cade21d85b3bfa563d9fa416fcfe96f  0002-Allow-colors-and-rectangle-drawing-in-dwm.patch
+215756e13cb251c063ba3d87aadf8e55d93619a33fc0caec55bdf04fb1939742eec6f4abd2307cdb355e31cb6862d6d33477a4a5967eef7fc493492de5f3fddf  0003-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
+0e044da4afc3f490b4549cd934a61a79978941c5016d78c893fa0ab6a6f803f12a769e7e8e6fa20e3cb54f09cd983a5a1539c33f70c291f20353494d8bc3cbd5  0004-Activate-the-window-as-response-to-client-request-_N.patch
+610f6f617b175d3ee198f363e516fdd39626d67103321e1c6dabc496fa9beca7cce6a53ba2db601e0935d804477887a9c20bb53d13b493c7b55ec48337509b51  0005-Add-a-rule-option-to-switch-to-the-configured-tag-wh.patch
+ad366dde6552ebb5e6a30c978f72605c86319fff2038e258936e2f1143ec574cdfb09a98909d4ea71594b1f3fd432d5a5cff38532701956f2b9191c985be6e9a  0006-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
+203eafe50f4adc5ef204a61460c1f054522fbbd7b218dcb14c3b05539be07d94956b31ac6958adb30331789a09b0bfa8c15c08bc5035227148799647188b5c69  0007-Always-display-the-monocle-symbol-if-the-monocle-lay.patch
+d3a13db34c18ba6ca1a28b408f3177a8a7e73f3aa6337970be6511635d35297a35f0af3c2a9ba91481ed3357eb3829dcb356ff5c1e3d9645254270f8d1395a77  0008-Add-bar-spacing-remove-title-and-center-all-floating.patch
+31f630ef54c00daa675fea278c2564553784788b2ab5abb9c3e44b8c8d4a5f8a57c2b8038bca21ce0ee06c8be9364d770747c766f05a26c6993956991f8811a3  0009-Press-MODKEY-s-default-to-make-a-client-sticky.patch
+aeac6f31356325fc628c20763e6c3ac0e8e6164ab2a01a26118c64c201c672f49e916fd9e35f2b8b85cc0c3a6b45c038b5a03aa74d56dd0b3515831bdbb0f752  0010-Add-gaps-between-client-windows-for-tile-layout-only.patch
+72ed0e4d5985246c907511569afba8366a71e67c14078a7a1b817dfff61b9484c08821338f846b6b545fef2532c1833fdc4e11b31a5e8ab3c2be1326619a8b2b  0011-Add-whitespace-in-default-status-VERSION-of-dwm.patch
 "

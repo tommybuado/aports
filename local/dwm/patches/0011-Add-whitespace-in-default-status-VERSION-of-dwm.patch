@@ -1,0 +1,25 @@
+From 2d3ece8db6fd573040b05b14497d49f3a7f3a170 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Thu, 6 Jul 2023 19:15:34 +0800
+Subject: [PATCH 11/11] Add whitespace in default status VERSION of dwm
+
+---
+ dwm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dwm.c b/dwm.c
+index 3b079ff..0fb64f1 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -2240,7 +2240,7 @@ void
+ updatestatus(void)
+ {
+ 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
+-		strcpy(stext, "dwm-"VERSION);
++		strcpy(stext, "dwm-"VERSION" ");
+ 	drawbar(selmon);
+ }
+ 
+-- 
+2.40.1
+
