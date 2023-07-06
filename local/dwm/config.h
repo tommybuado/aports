@@ -37,6 +37,7 @@ static const Rule rules[] = {
 	{ "Chromium",      NULL,       NULL,       1 << 2,       1,             0,           -1 },
 	{ "Blender",       NULL,       NULL,       1 << 3,       1,             0,           -1 },
 	{ "Inkscape",      NULL,       NULL,       1 << 3,       1,             0,           -1 },
+	{ "Remote-viewer", NULL,       NULL,       1 << 4,       1,             0,           -1 },
 };
 
 /* layout(s) */
@@ -64,14 +65,36 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-p", "\uf002", NULL };
-static const char *termcmd[]  = { "terminal.sh", NULL };
+static const char *brightnessdowncmd[] = { "brightness.sh", "down", NULL };
+static const char *brightnessupcmd[]   = { "brightness.sh", "up", NULL };
+static const char *browsercmd[]        = { "chromium-browser", NULL };
+static const char *dmenucmd[]          = { "dmenu_run", "-p", "\uf002", NULL };
+static const char *microphonecmd[]     = { "microphone.sh", "toggle", NULL };
+static const char *monitorcmd[]        = { "monitor.sh", "-p", "\uf2d0", NULL };
+static const char *projectcmd[]        = { "project.sh", "-p", "\uf07b", NULL };
+static const char *screenshotcmd[]     = { "screenshot.sh", NULL };
+static const char *speakertogglecmd[]  = { "speaker.sh", "toggle", NULL };
+static const char *speakerdowncmd[]    = { "speaker.sh", "down", NULL };
+static const char *speakerupcmd[]      = { "speaker.sh", "up", NULL };
+static const char *termcmd[]           = { "terminal.sh", NULL };
+static const char *virtmachinecmd[]    = { "virt-machine.sh", "-p", "\uf233", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ 0,                            0x1008ff03, spawn,          {.v = brightnessdowncmd } },
+	{ 0,                            0x1008ff02, spawn,          {.v = brightnessupcmd } },
+	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browsercmd } },
 	{ 0,                            0x1008ff1b, spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_space,   spawn,          {.v = dmenucmd } },
+	{ 0,                            0x1008ffb2, spawn,          {.v = microphonecmd } },
+	{ 0,                            0x1008ff59, spawn,          {.v = monitorcmd } },
+	{ 0,                            0x1008ff5d, spawn,          {.v = projectcmd } },
+	{ 0,                            0xff61,     spawn,          {.v = screenshotcmd } },
+	{ 0,                            0x1008ff12, spawn,          {.v = speakertogglecmd } },
+	{ 0,                            0x1008ff11, spawn,          {.v = speakerdowncmd } },
+	{ 0,                            0x1008ff13, spawn,          {.v = speakerupcmd } },
 	{ MODKEY|ShiftMask,             XK_Return,  spawn,          {.v = termcmd } },
+	{ 0,                            0x1008ff4a, spawn,          {.v = virtmachinecmd } },
 	{ MODKEY,                       XK_b,       togglebar,      {0} },
 	{ MODKEY,                       XK_j,       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,       focusstack,     {.i = -1 } },
