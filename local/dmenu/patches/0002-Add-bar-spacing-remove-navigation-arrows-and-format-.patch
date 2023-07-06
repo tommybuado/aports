@@ -1,0 +1,101 @@
+From c4450dabf236c6a2bdece90658849c34f1c48fd2 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Thu, 6 Jul 2023 17:15:37 +0800
+Subject: [PATCH 2/2] Add bar spacing, remove navigation arrows and format
+ config.def.h file
+
+---
+ config.def.h | 22 +++++++++++++---------
+ dmenu.c      | 14 +++++++-------
+ 2 files changed, 20 insertions(+), 16 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 79be73a..1ceeb04 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,23 +1,27 @@
+ /* See LICENSE file for copyright and license details. */
+ /* Default settings; can be overriden by command line. */
+ 
+-static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
++static const int bar_spacing = 2;    /* 2 is the default spacing around the bar's font */
++static int topbar            = 1;    /* -b  option; if 0, dmenu appears at bottom      */
++static const char *prompt    = NULL; /* -p  option; prompt to the left of input field  */
++
+ /* -fn option overrides fonts[0]; default X11 font or font set */
+ static const char *fonts[] = {
+ 	"monospace:size=10"
+ };
+-static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
++
+ static const char *colors[SchemeLast][2] = {
+-	/*     fg         bg       */
+-	[SchemeNorm] = { "#bbbbbb", "#222222" },
+-	[SchemeSel] = { "#eeeeee", "#005577" },
+-	[SchemeSelHighlight] = { "#ffc978", "#005577" },
++	/*                        fg         bg       */
++	[SchemeNorm]          = { "#bbbbbb", "#222222" },
++	[SchemeSel]           = { "#eeeeee", "#005577" },
++	[SchemeSelHighlight]  = { "#ffc978", "#005577" },
+ 	[SchemeNormHighlight] = { "#ffc978", "#222222" },
+-	[SchemeOut] = { "#000000", "#00ffff" },
+-	[SchemeOutHighlight] = { "#ffc978", "#00ffff" },
++	[SchemeOut]           = { "#000000", "#00ffff" },
++	[SchemeOutHighlight]  = { "#ffc978", "#00ffff" },
+ };
++
+ /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
+-static unsigned int lines      = 0;
++static unsigned int lines = 0;
+ 
+ /*
+  * Characters not considered part of a word while deleting words
+diff --git a/dmenu.c b/dmenu.c
+index 7f8d2c1..f7aee05 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -87,7 +87,7 @@ calcoffsets(void)
+ 	if (lines > 0)
+ 		n = lines * bh;
+ 	else
+-		n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">"));
++		n = mw - (promptw + inputw + TEXTW(" ") + TEXTW(" "));
+ 	/* calculate which items will begin the next page and previous page */
+ 	for (i = 0, next = curr; next; next = next->right)
+ 		if ((i += (lines > 0) ? bh : textw_clamp(next->text, n)) > n)
+@@ -215,18 +215,18 @@ drawmenu(void)
+ 	} else if (matches) {
+ 		/* draw horizontal list */
+ 		x += inputw;
+-		w = TEXTW("<");
++		w = TEXTW(" ");
+ 		if (curr->left) {
+ 			drw_setscheme(drw, scheme[SchemeNorm]);
+-			drw_text(drw, x, 0, w, bh, lrpad / 2, "<", 0);
++			drw_text(drw, x, 0, w, bh, lrpad / 2, " ", 0);
+ 		}
+ 		x += w;
+ 		for (item = curr; item != next; item = item->right)
+-			x = drawitem(item, x, 0, textw_clamp(item->text, mw - x - TEXTW(">")));
++			x = drawitem(item, x, 0, textw_clamp(item->text, mw - x - TEXTW(" ")));
+ 		if (next) {
+-			w = TEXTW(">");
++			w = TEXTW(" ");
+ 			drw_setscheme(drw, scheme[SchemeNorm]);
+-			drw_text(drw, mw - w, 0, w, bh, lrpad / 2, ">", 0);
++			drw_text(drw, mw - w, 0, w, bh, lrpad / 2, " ", 0);
+ 		}
+ 	}
+ 	drw_map(drw, win, 0, 0, mw, mh);
+@@ -669,7 +669,7 @@ setup(void)
+ 	utf8 = XInternAtom(dpy, "UTF8_STRING", False);
+ 
+ 	/* calculate menu geometry */
+-	bh = drw->fonts->h + 2;
++	bh = drw->fonts->h + bar_spacing;
+ 	lines = MAX(lines, 0);
+ 	mh = (lines + 1) * bh;
+ #ifdef XINERAMA
+-- 
+2.40.1
+
