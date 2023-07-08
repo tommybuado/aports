@@ -38,6 +38,9 @@ static const Rule rules[] = {
 	{ "Blender",       NULL,       NULL,       1 << 3,       1,             0,           -1 },
 	{ "Inkscape",      NULL,       NULL,       1 << 3,       1,             0,           -1 },
 	{ "Remote-viewer", NULL,       NULL,       1 << 4,       1,             0,           -1 },
+	{ "Virt-viewer",   NULL,       NULL,       1 << 4,       1,             0,           -1 },
+	{ "retroarch",     NULL,       NULL,       1 << 5,       1,             0,           -1 },
+	{ "mpv",           NULL,       NULL,       0,            0,             1,           -1 },
 };
 
 /* layout(s) */
