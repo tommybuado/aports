@@ -1,0 +1,76 @@
+From f564d2ba3d0b47af108e9ffc1da393e3fc266c79 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Fri, 14 Jul 2023 03:17:28 +0800
+Subject: [PATCH 1/2] Interact with the Display Power Management Signaling and
+ automatically turn off the monitor after a configurable time
+
+---
+ config.def.h |  3 +++
+ slock.c      | 20 ++++++++++++++++++++
+ 2 files changed, 23 insertions(+)
+
+diff --git a/config.def.h b/config.def.h
+index 9855e21..d01bd38 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -10,3 +10,6 @@ static const char *colorname[NUMCOLS] = {
+ 
+ /* treat a cleared input like a wrong password (color) */
+ static const int failonclear = 1;
++
++/* time in seconds before the monitor shuts down */
++static const int monitortime = 5;
+diff --git a/slock.c b/slock.c
+index 5ae738c..c934f28 100644
+--- a/slock.c
++++ b/slock.c
+@@ -15,6 +15,7 @@
+ #include <unistd.h>
+ #include <sys/types.h>
+ #include <X11/extensions/Xrandr.h>
++#include <X11/extensions/dpms.h>
+ #include <X11/keysym.h>
+ #include <X11/Xlib.h>
+ #include <X11/Xutil.h>
+@@ -314,6 +315,7 @@ main(int argc, char **argv) {
+ 	const char *hash;
+ 	Display *dpy;
+ 	int s, nlocks, nscreens;
++	CARD16 standby, suspend, off;
+ 
+ 	ARGBEGIN {
+ 	case 'v':
+@@ -374,6 +376,20 @@ main(int argc, char **argv) {
+ 	if (nlocks != nscreens)
+ 		return 1;
+ 
++	/* DPMS magic to disable the monitor */
++	if (!DPMSCapable(dpy))
++		die("slock: DPMSCapable failed\n");
++	if (!DPMSEnable(dpy))
++		die("slock: DPMSEnable failed\n");
++	if (!DPMSGetTimeouts(dpy, &standby, &suspend, &off))
++		die("slock: DPMSGetTimeouts failed\n");
++	if (!standby || !suspend || !off)
++		die("slock: at least one DPMS variable is zero\n");
++	if (!DPMSSetTimeouts(dpy, monitortime, monitortime, monitortime))
++		die("slock: DPMSSetTimeouts failed\n");
++
++	XSync(dpy, 0);
++
+ 	/* run post-lock command */
+ 	if (argc > 0) {
+ 		switch (fork()) {
+@@ -391,5 +407,9 @@ main(int argc, char **argv) {
+ 	/* everything is now blank. Wait for the correct password */
+ 	readpw(dpy, &rr, locks, nscreens, hash);
+ 
++	/* reset DPMS values to inital ones */
++	DPMSSetTimeouts(dpy, standby, suspend, off);
++	XSync(dpy, 0);
++
+ 	return 0;
+ }
+-- 
+2.40.1
+

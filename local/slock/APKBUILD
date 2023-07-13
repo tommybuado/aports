@@ -10,12 +10,16 @@ license="MIT"
 makedepends="libxext-dev libxrandr-dev linux-headers"
 subpackages="$pkgname-doc"
 options="suid !check"
-source="https://dl.suckless.org/tools/slock-$pkgver.tar.gz"
+source="https://dl.suckless.org/tools/slock-$pkgver.tar.gz
+	config.h
+	patches/0001-Interact-with-the-Display-Power-Management-Signaling.patch
+	patches/0002-Add-controlkeyclear-configuration-parameter-to-chang.patch"
 
 prepare() {
 	default_prepare
 	sed -i -e "/CFLAGS/{s/-Os//;s/=/+=/}" \
 		-e "/LDFLAGS/{s/-s//;s/=/+=/}" config.mk
+	cp -pr "$srcdir"/config.h config.h
 }
 
 build() {
@@ -29,4 +33,7 @@ package() {
 
 sha512sums="
 2402b1e49f5dbe06cca2f3a31efedce6359413b240f2b98c57147483591a873c3c5457dbf6707485167002ff6d7ee0e9005d9fa506a51bf71337624e8728bb43  slock-1.5.tar.gz
+438bd85e92f5c107d8107b04ea0e8d0eccbd0fef86f3c82737a722ef03a3803b101809ff3346924587b3a2ccda8e7a53d24f3b28f4af726f6b29886a5b2cb2c1  config.h
+0b031450c987937db1ee455941ad018d5488a30066f14bcabfe0c86a33498bdf93d2140c01d4da106da595916436711512a7692ee46aafd6c007a90b5bd37865  0001-Interact-with-the-Display-Power-Management-Signaling.patch
+a981c9959ed294c23c479d642ccac8c6640277bba30e9555a3c442cb462b79b4eab04b1a9d263bca4c623de24e38b7b51c3c9e662c3b6028fe1f30707821a731  0002-Add-controlkeyclear-configuration-parameter-to-chang.patch
 "
