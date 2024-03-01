@@ -16,7 +16,8 @@ source="https://dl.suckless.org/st/st-$pkgver.tar.gz
 	config.h
 	patches/0001-Render-customized-lines-blocks-braille-characters-fo.patch
 	patches/0002-Allow-st-to-resize-make-border-dynamic-and-center-th.patch
-	patches/0003-Hide-the-X-cursor-whenever-a-key-is-pressed-and-show.patch"
+	patches/0003-Hide-the-X-cursor-whenever-a-key-is-pressed-and-show.patch
+	patches/0004-Allow-user-to-change-the-opacity-of-the-background.patch"
 
 provides="st-virtual"
 provider_priority=100
@@ -40,8 +41,9 @@ package() {
 sha512sums="
 8d996a68d55c63d84da9962911b076ef437842e8cd83d74672d95531dfbaea91e049430886459a99e859ec760bb3754e94bbe1f646410998725e5a8997fb70ea  st-0.9.tar.gz
 ec2a6fcb16147f533a12f7da2718cddaf4382fd7efbb6c296079ace6baf95a827e441a04d50296ab293228cbfd403d09614e8328a98adec9760915c4f52b3095  st.desktop
-73302da144000d073990bbc4f2695feb6c5131dab1f3a8001ad2bcbb34ada4265fc9457c0f997b6fe2adcfccec359d5379af1485e3914c2c98392678c4f2dd8f  config.h
+d8aaacd4c0191fcc64f9b6159dffce61b9a65b8bf6814da8ae0334fc6fb417c28ce04f32ade16e51ed494b06c6666cf1470424dfe1729fcabd5903306272274d  config.h
 c9225bcfc6ec0edd8cac1bace793be089129d1365f3be4ff66c9c25b3665dc1a0673eed41f6a3d3629046fe5b3cd7ebe8e3cd7eb94e9c9a693e33913649f3ef8  0001-Render-customized-lines-blocks-braille-characters-fo.patch
 a0cb722a6b3d5947764c26e8d2bc4953de21c0473fa8388cca6bbc769c7fecfc13eff17dd52b2394bad7608e1ed9436263dcee336aeba7f9782cd7ec9d681b34  0002-Allow-st-to-resize-make-border-dynamic-and-center-th.patch
 4c560b618bb489884da23c3bbd2ad25f52377bf25b0146fe03597b7eb6a70433cbaeaffad38bda374dce9eae411d43034f3ea8f7de361e7dbbe40569270bcca2  0003-Hide-the-X-cursor-whenever-a-key-is-pressed-and-show.patch
+9467e6275e051d8b2bf08e4c8b09b54ca70a7fecf9edbc6aa15c3fb0280f366081dcab1fe0397a2e047024785c76b7b08e3d178e9fbcff1651e275d50e9897d7  0004-Allow-user-to-change-the-opacity-of-the-background.patch
 "
