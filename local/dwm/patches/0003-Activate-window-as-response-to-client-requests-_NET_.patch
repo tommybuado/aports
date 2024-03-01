@@ -1,0 +1,42 @@
+From a80a911fa2ab12b6411b2b549bbd583a5b631e5b Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Fri, 1 Mar 2024 11:05:44 +0800
+Subject: [PATCH 3/4] Activate window as response to client requests
+ _NET_ACTIVE_WINDOW
+
+---
+ dwm.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/dwm.c b/dwm.c
+index ca27139..04f0d94 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -521,6 +521,7 @@ clientmessage(XEvent *e)
+ {
+ 	XClientMessageEvent *cme = &e->xclient;
+ 	Client *c = wintoclient(cme->window);
++	unsigned int i;
+ 
+ 	if (!c)
+ 		return;
+@@ -530,8 +531,14 @@ clientmessage(XEvent *e)
+ 			setfullscreen(c, (cme->data.l[0] == 1 /* _NET_WM_STATE_ADD    */
+ 				|| (cme->data.l[0] == 2 /* _NET_WM_STATE_TOGGLE */ && !c->isfullscreen)));
+ 	} else if (cme->message_type == netatom[NetActiveWindow]) {
+-		if (c != selmon->sel && !c->isurgent)
+-			seturgent(c, 1);
++		for (i = 0; i < LENGTH(tags) && !((1 << i) & c->tags); i++);
++		if (i < LENGTH(tags)) {
++			const Arg a = {.ui = 1 << i};
++			selmon = c->mon;
++			view(&a);
++			focus(c);
++			restack(selmon);
++		}
+ 	}
+ }
+ 
+-- 
+2.43.0
+
