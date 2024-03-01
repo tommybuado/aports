@@ -14,7 +14,8 @@ options="!check"
 source="https://dl.suckless.org/st/st-$pkgver.tar.gz
 	st.desktop
 	patches/0001-Render-customized-lines-blocks-braille-characters-fo.patch
-	patches/0002-Allow-st-to-resize-make-border-dynamic-and-center-th.patch"
+	patches/0002-Allow-st-to-resize-make-border-dynamic-and-center-th.patch
+	patches/0003-Hide-the-X-cursor-whenever-a-key-is-pressed-and-show.patch"
 
 provides="st-virtual"
 provider_priority=100
@@ -39,4 +40,5 @@ sha512sums="
 ec2a6fcb16147f533a12f7da2718cddaf4382fd7efbb6c296079ace6baf95a827e441a04d50296ab293228cbfd403d09614e8328a98adec9760915c4f52b3095  st.desktop
 c9225bcfc6ec0edd8cac1bace793be089129d1365f3be4ff66c9c25b3665dc1a0673eed41f6a3d3629046fe5b3cd7ebe8e3cd7eb94e9c9a693e33913649f3ef8  0001-Render-customized-lines-blocks-braille-characters-fo.patch
 a0cb722a6b3d5947764c26e8d2bc4953de21c0473fa8388cca6bbc769c7fecfc13eff17dd52b2394bad7608e1ed9436263dcee336aeba7f9782cd7ec9d681b34  0002-Allow-st-to-resize-make-border-dynamic-and-center-th.patch
+4c560b618bb489884da23c3bbd2ad25f52377bf25b0146fe03597b7eb6a70433cbaeaffad38bda374dce9eae411d43034f3ea8f7de361e7dbbe40569270bcca2  0003-Hide-the-X-cursor-whenever-a-key-is-pressed-and-show.patch
 "
