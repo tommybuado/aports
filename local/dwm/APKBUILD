@@ -16,7 +16,9 @@ source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	patches/0001-Make-dwm-run-autostart-scripts-before-entering-handl.patch
 	patches/0002-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
 	patches/0003-Activate-window-as-response-to-client-requests-_NET_.patch
-	patches/0004-Add-a-rule-option-to-switch-to-the-configured-tag-wh.patch"
+	patches/0004-Add-a-rule-option-to-switch-to-the-configured-tag-wh.patch
+	patches/0005-Remove-title-and-allow-user-to-change-bar-height-tha.patch
+	patches/0006-Always-display-monocle-symbol-if-the-layout-is-activ.patch"
 
 provides="dwm-virtual"
 provider_priority=100
@@ -46,4 +48,6 @@ b13ac4390c7945cfb4e06bbec2cf69a9bf55867fe2babcba1a4945803a12bea88db31ad06dd06627
 13657c9507130b38f7a7ecaa69b2876e0877bcee0202f000453d35df86939896e6f851033259a714a7e699cf41dca4ddccac17e7cbc4be7fd3e27fdac6f24fc0  0002-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
 e3a2b51fea8fe6d8d770c0460cb5dd3a166dab40651a2e13b07a283f113479451349c42900b93d81f85f9ae268bab7fc2d7d13ac310961746d1ca7777eeff1ed  0003-Activate-window-as-response-to-client-requests-_NET_.patch
 b0a5ebb5cd24517552242de8ec716f0b973fa28f316b4dec90ce8a9767319ea095bcde890b31be0807586164937c5456dd094450ac94da1ead586e2e779e65c5  0004-Add-a-rule-option-to-switch-to-the-configured-tag-wh.patch
+8caf173d6603f8419647573c4362c35057d7c1aa600ce066e973d9b65400ab359eb12c66052a08dd079ee099646cbbe870315bb0e98ba3a6e7f8add43682d8b6  0005-Remove-title-and-allow-user-to-change-bar-height-tha.patch
+1294fe5b4e463f226dbbc14426d860fe7da98aa9976b843264df1b7b05a117d87b15f53aa864df4f097c84a72fcb4592381358c5aef9bdfa1349b839148a72c0  0006-Always-display-monocle-symbol-if-the-layout-is-activ.patch
 "
