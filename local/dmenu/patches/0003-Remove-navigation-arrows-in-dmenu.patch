@@ -1,0 +1,40 @@
+From 029f7c991756ad2d2046644a8703d8c5a94dd058 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Fri, 1 Mar 2024 10:40:05 +0800
+Subject: [PATCH 3/3] Remove navigation arrows in dmenu
+
+---
+ dmenu.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/dmenu.c b/dmenu.c
+index 1a3f326..ec03f13 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -214,18 +214,18 @@ drawmenu(void)
+ 	} else if (matches) {
+ 		/* draw horizontal list */
+ 		x += inputw;
+-		w = TEXTW("<");
++		w = TEXTW(" ");
+ 		if (curr->left) {
+ 			drw_setscheme(drw, scheme[SchemeNorm]);
+-			drw_text(drw, x, 0, w, bh, lrpad / 2, "<", 0);
++			drw_text(drw, x, 0, w, bh, lrpad / 2, " ", 0);
+ 		}
+ 		x += w;
+ 		for (item = curr; item != next; item = item->right)
+-			x = drawitem(item, x, 0, textw_clamp(item->text, mw - x - TEXTW(">")));
++			x = drawitem(item, x, 0, textw_clamp(item->text, mw - x - TEXTW(" ")));
+ 		if (next) {
+-			w = TEXTW(">");
++			w = TEXTW(" ");
+ 			drw_setscheme(drw, scheme[SchemeNorm]);
+-			drw_text(drw, mw - w, 0, w, bh, lrpad / 2, ">", 0);
++			drw_text(drw, mw - w, 0, w, bh, lrpad / 2, " ", 0);
+ 		}
+ 	}
+ 	drw_map(drw, win, 0, 0, mw, mh);
+-- 
+2.43.0
+

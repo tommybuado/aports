@@ -12,7 +12,8 @@ subpackages="$pkgname-doc"
 options="!check"
 source="https://dl.suckless.org/tools/dmenu-$pkgver.tar.gz
 	patches/0001-Highlight-the-individual-characters-of-matched-text.patch
-	patches/0002-Allow-user-to-change-bar-height-that-respect-the-DPI.patch"
+	patches/0002-Allow-user-to-change-bar-height-that-respect-the-DPI.patch
+	patches/0003-Remove-navigation-arrows-in-dmenu.patch"
 
 provides="dmenu-virtual"
 provider_priority=100
@@ -37,4 +38,5 @@ sha512sums="
 7be9bb76b11225ec86a30e643e9b884f6d13af581526085212cb7401383d448a72fe4dffc3ce84ffb8319dbf36ca8384597a89070cd27d39d5618f239a2da6e3  dmenu-5.2.tar.gz
 ff72bca7e9370d870b5b9e8f8f98701a58842f926f936224816933fbd54977b7253a09f67ca4ed64c544e52ca36570232151aa1d17b574f4bcf7dfe40a7581c6  0001-Highlight-the-individual-characters-of-matched-text.patch
 5b8a3199cc8920d7d42b59605609be13be2403f4797acae738cfb1e2d23e26a80b57947dbdeb69f01bb9d430b34b103504a82888692f93448f2e9b03d8adba22  0002-Allow-user-to-change-bar-height-that-respect-the-DPI.patch
+2fee3d01853e32bfc194d291b55ebb9a0f52fe5927ae840cebc63d43b9dc8d8ac6349edcb2c3ac73d62138449c68a96802f89fa7e816f29ece91df33b5b3b8f9  0003-Remove-navigation-arrows-in-dmenu.patch
 "
