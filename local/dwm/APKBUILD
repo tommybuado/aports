@@ -19,7 +19,8 @@ source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	patches/0004-Add-a-rule-option-to-switch-to-the-configured-tag-wh.patch
 	patches/0005-Remove-title-and-allow-user-to-change-bar-height-tha.patch
 	patches/0006-Always-display-monocle-symbol-if-the-layout-is-activ.patch
-	patches/0007-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch"
+	patches/0007-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
+	patches/0008-Allow-status-colors-and-rectangular-drawings-in-dwm.patch"
 
 provides="dwm-virtual"
 provider_priority=100
@@ -52,4 +53,5 @@ b0a5ebb5cd24517552242de8ec716f0b973fa28f316b4dec90ce8a9767319ea095bcde890b31be08
 8caf173d6603f8419647573c4362c35057d7c1aa600ce066e973d9b65400ab359eb12c66052a08dd079ee099646cbbe870315bb0e98ba3a6e7f8add43682d8b6  0005-Remove-title-and-allow-user-to-change-bar-height-tha.patch
 1294fe5b4e463f226dbbc14426d860fe7da98aa9976b843264df1b7b05a117d87b15f53aa864df4f097c84a72fcb4592381358c5aef9bdfa1349b839148a72c0  0006-Always-display-monocle-symbol-if-the-layout-is-activ.patch
 7b0f6c3c97ac4db2a9d64135fddc851ae72963fb851ac3008e6bcfbff52ca3dd6f459112f4d0ae12c1038f9524428f8b2cd5e792cee1a7cf952c5ffbf9d29a39  0007-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
+dd9b9ea1d33a7adc7760ac866b116d190fe3273d954cf90f322f543faff764ad5d4fc69dda99ebd5306d60acb1b41cc6679110002a9cddf5647b4e1c38883a82  0008-Allow-status-colors-and-rectangular-drawings-in-dwm.patch
 "
