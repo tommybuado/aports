@@ -1,16 +1,22 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int bar_spacing        = 2;        /* 2 is the default spacing around the bar's font */
+static const int bar_spacing        = 6;        /* 2 is the default spacing around the bar's font */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "monospace:pixelsize=12:antialias=true:autohint=true" };
-static const char col_black[]       = "#000000";
-static const char col_white[]       = "#e5e5e5";
-static const char col_blue[]        = "#005577";
+static const char *fonts[]          = {
+	"monospace:pixelsize=12:antialias=true:autohint=true",
+	"Font Awesome 6 Brands Regular:pixelsize=9:antialias=true:autohint=true",
+	"Font Awesome 6 Free Solid:pixelsize=9:antialias=true:autohint=true",
+	"Font Awesome 6 Free Regular:pixelsize=9:antialias=true:autohint=true",
+};
+
+static const char col_black[]       = "#101010";
+static const char col_white[]       = "#d0d0d0";
+static const char col_blue[]        = "#5f5fee";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_white, col_black, col_black },
@@ -18,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "\ue52f", "\uf121", "\uf268", "\uf233" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -37,9 +43,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[m]",      monocle },    /* first entry is default */
-	{ "[t]",      tile },
+	/* symbol   arrange function */
+	{ "\uf065", monocle }, /* first entry is default */
+	{ "\uf58d", tile },
 };
 
 /* key definitions */
@@ -55,11 +61,13 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "terminal.sh", NULL };
+static const char *browsercmd[] = { "chromium-browser", NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-p", "\uf002", NULL };
+static const char *termcmd[]    = { "terminal.sh", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -84,11 +92,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
