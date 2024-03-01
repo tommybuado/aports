@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=st
+Comment=A simple terminal emulator for X
+Type=Application
+Exec=st
+Terminal=false
+Icon=gnome-xterm
+Categories=System;TerminalEmulator;
