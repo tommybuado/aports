@@ -21,7 +21,8 @@ source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	patches/0005-Remove-title-and-allow-user-to-change-bar-height-tha.patch
 	patches/0006-Always-display-monocle-symbol-if-the-layout-is-activ.patch
 	patches/0007-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
-	patches/0008-Allow-status-colors-and-rectangular-drawings-in-dwm.patch"
+	patches/0008-Allow-status-colors-and-rectangular-drawings-in-dwm.patch
+	patches/0009-Allow-dwm-to-have-translucent-bars-while-keeping-all.patch"
 
 provides="dwm-virtual"
 provider_priority=100
@@ -48,7 +49,7 @@ package() {
 sha512sums="
 b13ac4390c7945cfb4e06bbec2cf69a9bf55867fe2babcba1a4945803a12bea88db31ad06dd06627445f8456950deb26f2d631f946c4207ae92e13f273051a51  dwm-6.4.tar.gz
 8d8a3f3e2b285dfce17da9cf4173b4841d0d7465112a1b2478d417dfb9c0b37ae98542c710464fcf0fdbe8fcef5a502f88a88a115d5c1717cf429f84797337dd  dwm.desktop
-91ac39f45c236ac27831c0b28565687a0b4b95e4e3bacce64be2bba6dca557d27ee1bfd2779fda5ccf7b8aa39fc9a80f6d01eef44e20abfcd81795469cf2cb35  config.h
+72c50307267148c31d52143b7c446e05444a23c920f76e58c9e9c02a9cf92f21680baa3957bf9da3fdbaaab03f2b2ca11889553d70d23e35be66442cfceeb42d  config.h
 139b3b78dc0371dc4ba770cd0a3455e9338ce1bb9995c2f3582e480d08df1d5a306e63cfbac53d58070b247f251ab75f3ae89e617fb68bfc7f75cb02d0969b8d  0001-Make-dwm-run-autostart-scripts-before-entering-handl.patch
 13657c9507130b38f7a7ecaa69b2876e0877bcee0202f000453d35df86939896e6f851033259a714a7e699cf41dca4ddccac17e7cbc4be7fd3e27fdac6f24fc0  0002-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
 e3a2b51fea8fe6d8d770c0460cb5dd3a166dab40651a2e13b07a283f113479451349c42900b93d81f85f9ae268bab7fc2d7d13ac310961746d1ca7777eeff1ed  0003-Activate-window-as-response-to-client-requests-_NET_.patch
@@ -57,4 +58,5 @@ b0a5ebb5cd24517552242de8ec716f0b973fa28f316b4dec90ce8a9767319ea095bcde890b31be08
 1294fe5b4e463f226dbbc14426d860fe7da98aa9976b843264df1b7b05a117d87b15f53aa864df4f097c84a72fcb4592381358c5aef9bdfa1349b839148a72c0  0006-Always-display-monocle-symbol-if-the-layout-is-activ.patch
 7b0f6c3c97ac4db2a9d64135fddc851ae72963fb851ac3008e6bcfbff52ca3dd6f459112f4d0ae12c1038f9524428f8b2cd5e792cee1a7cf952c5ffbf9d29a39  0007-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
 dd9b9ea1d33a7adc7760ac866b116d190fe3273d954cf90f322f543faff764ad5d4fc69dda99ebd5306d60acb1b41cc6679110002a9cddf5647b4e1c38883a82  0008-Allow-status-colors-and-rectangular-drawings-in-dwm.patch
+9a349b52b46644aa14a0f60b23f7f99a93c95aa95f256212dc76b85b08d64920f541c7b326813810287a3d7742642562913674bb0a40cae208e3099d784f44c1  0009-Allow-dwm-to-have-translucent-bars-while-keeping-all.patch
 "

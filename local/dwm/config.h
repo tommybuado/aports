@@ -23,6 +23,14 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_blue,  col_black, col_black },
 };
 
+static const unsigned int baralpha    = 0xf2;
+static const unsigned int borderalpha = OPAQUE;
+static const unsigned int alphas[][3] = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+};
+
 /* tagging */
 static const char *tags[] = { "\ue52f", "\uf121", "\uf268", "\uf233" };
 
