@@ -32,16 +32,22 @@ static const unsigned int alphas[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "\ue52f", "\uf121", "\uf268", "\uf233" };
+static const char *tags[] = { "\ue52f", "\uf121", "\uf268", "\uf55d", "\uf11b", "\uf233" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance    title       tags mask     switchtotag    isfloating   monitor */
-	{ "st-256color", NULL,       NULL,       2,            1,             0,           -1 },
-	{ "Chromium",    NULL,       NULL,       1 << 2,       1,             0,           -1 },
+	/* class           instance    title       tags mask     switchtotag    isfloating   monitor */
+	{ "st-256color",   NULL,       NULL,       2,            1,             0,           -1 },
+	{ "Chromium",      NULL,       NULL,       1 << 2,       1,             0,           -1 },
+	{ "Blender",       NULL,       NULL,       1 << 3,       1,             0,           -1 },
+	{ "Inkscape",      NULL,       NULL,       1 << 3,       1,             0,           -1 },
+	{ "Remote-viewer", NULL,       NULL,       1 << 5,       1,             0,           -1 },
+	{ "Virt-viewer",   NULL,       NULL,       1 << 5,       1,             0,           -1 },
+	{ "mpv",           NULL,       NULL,       0,            0,             1,           -1 },
+	{ "scrcpy",        NULL,       NULL,       0,            0,             1,           -1 },
 };
 
 /* layout(s) */
@@ -130,7 +136,7 @@ static const Key keys[] = {
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[1]} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[0]} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
