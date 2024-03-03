@@ -10,7 +10,8 @@ license="MIT"
 makedepends="libxext-dev libxrandr-dev linux-headers"
 subpackages="$pkgname-doc"
 options="suid !check"
-source="https://dl.suckless.org/tools/slock-$pkgver.tar.gz"
+source="https://dl.suckless.org/tools/slock-$pkgver.tar.gz
+	patches/0001-Interact-with-DPMS-and-automatically-turn-off-the-mo.patch"
 
 prepare() {
 	default_prepare
@@ -28,4 +29,5 @@ package() {
 
 sha512sums="
 2402b1e49f5dbe06cca2f3a31efedce6359413b240f2b98c57147483591a873c3c5457dbf6707485167002ff6d7ee0e9005d9fa506a51bf71337624e8728bb43  slock-1.5.tar.gz
+0c0c68ca494a54ca54b45990a115a32868be2d1ed56f9b5373eca4ecda93746f81e67cd491f9cc0fd73e80d1f752bc05902b792e527f61185506440f169d02a0  0001-Interact-with-DPMS-and-automatically-turn-off-the-mo.patch
 "
