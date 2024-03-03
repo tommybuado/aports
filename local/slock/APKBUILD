@@ -11,6 +11,7 @@ makedepends="libxext-dev libxrandr-dev linux-headers imlib2-dev"
 subpackages="$pkgname-doc"
 options="suid !check"
 source="https://dl.suckless.org/tools/slock-$pkgver.tar.gz
+	config.h
 	patches/0001-Interact-with-DPMS-and-automatically-turn-off-the-mo.patch
 	patches/0002-Set-the-lockscreen-picture-to-a-blurred-screenshot.patch"
 
@@ -18,6 +19,7 @@ prepare() {
 	default_prepare
 	sed -i -e "/CFLAGS/{s/-Os//;s/=/+=/}" \
 		-e "/LDFLAGS/{s/-s//;s/=/+=/}" config.mk
+	cp -pr "$srcdir"/config.h config.h
 }
 
 build() {
@@ -30,6 +32,7 @@ package() {
 
 sha512sums="
 2402b1e49f5dbe06cca2f3a31efedce6359413b240f2b98c57147483591a873c3c5457dbf6707485167002ff6d7ee0e9005d9fa506a51bf71337624e8728bb43  slock-1.5.tar.gz
+efddde94b8e36ccea050ecf9e3af619e26998303e6622ebd3f9578063035cc1f9000aa9f2c8793089a7bfc8d9cbd2c25b1b4ef9f0a0c6156ab3b7a2d479903fd  config.h
 0c0c68ca494a54ca54b45990a115a32868be2d1ed56f9b5373eca4ecda93746f81e67cd491f9cc0fd73e80d1f752bc05902b792e527f61185506440f169d02a0  0001-Interact-with-DPMS-and-automatically-turn-off-the-mo.patch
 3436f4210fc75b123d584e0a7ade212ce42de4b56cebfef99cd0828d3402e1da679074c85e36818dfc928adf432f0988c0ac3d6878e78034af1222a333f41a7f  0002-Set-the-lockscreen-picture-to-a-blurred-screenshot.patch
 "
