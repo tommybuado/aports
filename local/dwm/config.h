@@ -75,15 +75,16 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+static char dmenumon[2]             = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *browsercmd[]     = { "chromium-browser", NULL };
 static const char *brightdowncmd[]  = { "brightness.sh", "down", NULL };
 static const char *brightupcmd[]    = { "brightness.sh", "up", NULL };
-static const char *dmenucmd[]       = { "dmenu_run", "-p", "\uf002", NULL };
+static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-p", "\uf002", NULL };
 static const char *microphonecmd[]  = { "microphone.sh", "toggle", NULL };
-static const char *monitorcmd[]     = { "monitor-display.sh", "-p", "\uf3fa", NULL };
-static const char *projectcmd[]     = { "project.sh", "-p", "\uf07b", NULL };
+static const char *monitorcmd[]     = { "monitor-display.sh", "-m", dmenumon, "-p", "\uf3fa", NULL };
+static const char *projectcmd[]     = { "project.sh", "-m", dmenumon, "-p", "\uf07b", NULL };
 static const char *screenshotcmd[]  = { "screenshot.sh", NULL };
-static const char *settingscmd[]    = { "system-settings.sh", "-p", "\uf013", NULL };
+static const char *settingscmd[]    = { "system-settings.sh", "-m", dmenumon, "-p", "\uf013", NULL };
 static const char *speakercmd[]     = { "speaker.sh", "toggle", NULL };
 static const char *speakerdowncmd[] = { "speaker.sh", "down", NULL };
 static const char *speakerupcmd[]   = { "speaker.sh", "up", NULL };

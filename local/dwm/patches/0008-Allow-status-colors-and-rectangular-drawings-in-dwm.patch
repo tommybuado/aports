@@ -1,14 +1,14 @@
-From 9c361b5c85c70dd39d57d26b7c45609428d8254e Mon Sep 17 00:00:00 2001
+From 2fae668ec59dfacd4b2c2d5a85446d9d574e6921 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 11:23:53 +0800
-Subject: [PATCH 8/8] Allow status colors and rectangular drawings in dwm
+Subject: [PATCH 8/9] Allow status colors and rectangular drawings in dwm
 
 ---
  dwm.c | 120 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---
  1 file changed, 114 insertions(+), 6 deletions(-)
 
 diff --git a/dwm.c b/dwm.c
-index 439d220..04dbb81 100644
+index 4cc0f2f..92bf817 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -168,6 +168,7 @@ static void detachstack(Client *c);
@@ -19,7 +19,7 @@ index 439d220..04dbb81 100644
  static void expose(XEvent *e);
  static void focus(Client *c);
  static void focusin(XEvent *e);
-@@ -245,7 +246,7 @@ static const char autostartsh[] = "autostart.sh";
+@@ -244,7 +245,7 @@ static const char autostartsh[] = "autostart.sh";
  static const char broken[] = "broken";
  static const char dwmdir[] = "dwm";
  static const char localshare[] = ".local/share";
@@ -28,7 +28,7 @@ index 439d220..04dbb81 100644
  static int screen;
  static int sw, sh;           /* X display screen geometry width, height */
  static int bh;               /* bar height */
-@@ -506,7 +507,7 @@ cleanup(void)
+@@ -505,7 +506,7 @@ cleanup(void)
  		cleanupmon(mons);
  	for (i = 0; i < CurLast; i++)
  		drw_cur_free(drw, cursor[i]);
@@ -37,7 +37,7 @@ index 439d220..04dbb81 100644
  		free(scheme[i]);
  	free(scheme);
  	XDestroyWindow(dpy, wmcheckwin);
-@@ -751,9 +752,7 @@ drawbar(Monitor *m)
+@@ -750,9 +751,7 @@ drawbar(Monitor *m)
  
  	/* draw status first so it can be overdrawn by tags later */
  	if (m == selmon) { /* status is only drawn on selected monitor */
@@ -48,7 +48,7 @@ index 439d220..04dbb81 100644
  	}
  
  	for (c = m->clients; c; c = c->next) {
-@@ -792,6 +791,114 @@ drawbars(void)
+@@ -791,6 +790,114 @@ drawbars(void)
  		drawbar(m);
  }
  
@@ -163,7 +163,7 @@ index 439d220..04dbb81 100644
  void
  expose(XEvent *e)
  {
-@@ -1634,7 +1741,8 @@ setup(void)
+@@ -1650,7 +1757,8 @@ setup(void)
  	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
  	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
  	/* init appearance */

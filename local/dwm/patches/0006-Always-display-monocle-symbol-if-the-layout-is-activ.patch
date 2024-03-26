@@ -1,17 +1,17 @@
-From 75d7581e02c1bd9129925622735fd54f7f35784a Mon Sep 17 00:00:00 2001
+From 0cac5acb7a8c0e34994a0bde81cdf4731010ef43 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 11:13:57 +0800
-Subject: [PATCH 6/6] Always display monocle symbol if the layout is activated
+Subject: [PATCH 6/9] Always display monocle symbol if the layout is activated
 
 ---
  dwm.c | 6 ------
  1 file changed, 6 deletions(-)
 
 diff --git a/dwm.c b/dwm.c
-index c41e41b..ba7dbc0 100644
+index d2a5c51..79225d9 100644
 --- a/dwm.c
 +++ b/dwm.c
-@@ -1093,14 +1093,8 @@ maprequest(XEvent *e)
+@@ -1102,14 +1102,8 @@ maprequest(XEvent *e)
  void
  monocle(Monitor *m)
  {

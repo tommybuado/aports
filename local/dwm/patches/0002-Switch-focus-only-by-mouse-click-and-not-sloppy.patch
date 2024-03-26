@@ -1,7 +1,7 @@
-From ff535803c0d87279b73f165998e55ddf564e1b7a Mon Sep 17 00:00:00 2001
+From b15f6ac48e162a87beac90c6e7097acfddaa6cb0 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 11:01:09 +0800
-Subject: [PATCH 2/2] Switch focus only by mouse click and not sloppy
+Subject: [PATCH 2/9] Switch focus only by mouse click and not sloppy
 
 ---
  config.def.h |  1 +
@@ -9,7 +9,7 @@ Subject: [PATCH 2/2] Switch focus only by mouse click and not sloppy
  2 files changed, 5 insertions(+), 43 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index 061ad66..ef8822f 100644
+index 9efa774..68a2f20 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,6 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -21,7 +21,7 @@ index 061ad66..ef8822f 100644
  static const char dmenufont[]       = "monospace:size=10";
  static const char col_gray1[]       = "#222222";
 diff --git a/dwm.c b/dwm.c
-index 6c3fa57..ca27139 100644
+index 00030a3..041a776 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -164,7 +164,6 @@ static void detachstack(Client *c);
@@ -40,7 +40,7 @@ index 6c3fa57..ca27139 100644
  static void movemouse(const Arg *arg);
  static Client *nexttiled(Client *c);
  static void pop(Client *c);
-@@ -256,13 +254,11 @@ static void (*handler[LASTEvent]) (XEvent *) = {
+@@ -255,13 +253,11 @@ static void (*handler[LASTEvent]) (XEvent *) = {
  	[ConfigureRequest] = configurerequest,
  	[ConfigureNotify] = configurenotify,
  	[DestroyNotify] = destroynotify,
@@ -54,7 +54,7 @@ index 6c3fa57..ca27139 100644
  	[PropertyNotify] = propertynotify,
  	[UnmapNotify] = unmapnotify
  };
-@@ -433,7 +429,8 @@ buttonpress(XEvent *e)
+@@ -432,7 +428,8 @@ buttonpress(XEvent *e)
  
  	click = ClkRootWin;
  	/* focus monitor if necessary */
@@ -64,7 +64,7 @@ index 6c3fa57..ca27139 100644
  		unfocus(selmon->sel, 1);
  		selmon = m;
  		focus(NULL);
-@@ -453,8 +450,8 @@ buttonpress(XEvent *e)
+@@ -452,8 +449,8 @@ buttonpress(XEvent *e)
  		else
  			click = ClkWinTitle;
  	} else if ((c = wintoclient(ev->window))) {
@@ -75,7 +75,7 @@ index 6c3fa57..ca27139 100644
  		XAllowEvents(dpy, ReplayPointer, CurrentTime);
  		click = ClkClientWin;
  	}
-@@ -764,25 +761,6 @@ drawbars(void)
+@@ -763,25 +760,6 @@ drawbars(void)
  		drawbar(m);
  }
  
@@ -101,7 +101,7 @@ index 6c3fa57..ca27139 100644
  void
  expose(XEvent *e)
  {
-@@ -1122,23 +1100,6 @@ monocle(Monitor *m)
+@@ -1131,23 +1109,6 @@ monocle(Monitor *m)
  		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
  }
  

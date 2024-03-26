@@ -1,7 +1,7 @@
-From 1f30d24b5a1a838421ebb3145cd0cdcda52259c7 Mon Sep 17 00:00:00 2001
+From 4ab8cdd9e507077ac7c61c8e674981079bcede71 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 11:12:34 +0800
-Subject: [PATCH 5/6] Remove title and allow user to change bar height that
+Subject: [PATCH 5/9] Remove title and allow user to change bar height that
  respect the DPI
 
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH 5/6] Remove title and allow user to change bar height that
  2 files changed, 9 insertions(+), 21 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index b7f4614..f40d001 100644
+index 7a251a4..e739899 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,6 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -21,7 +21,7 @@ index b7f4614..f40d001 100644
  static const int focusonwheel       = 0;
  static const char *fonts[]          = { "monospace:size=10" };
  static const char dmenufont[]       = "monospace:size=10";
-@@ -98,12 +99,11 @@ static const Key keys[] = {
+@@ -99,12 +100,11 @@ static const Key keys[] = {
  };
  
  /* button definitions */
@@ -36,7 +36,7 @@ index b7f4614..f40d001 100644
  	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
  	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 diff --git a/dwm.c b/dwm.c
-index c1a2ce4..c41e41b 100644
+index 1994627..d2a5c51 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -65,8 +65,8 @@ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
@@ -50,7 +50,7 @@ index c1a2ce4..c41e41b 100644
  
  typedef union {
  	int i;
-@@ -452,10 +452,8 @@ buttonpress(XEvent *e)
+@@ -451,10 +451,8 @@ buttonpress(XEvent *e)
  			arg.ui = 1 << i;
  		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
  			click = ClkLtSymbol;
@@ -62,7 +62,7 @@ index c1a2ce4..c41e41b 100644
  	} else if ((c = wintoclient(ev->window))) {
  		if (focusonwheel || (ev->button != Button4 && ev->button != Button5))
  			focus(c);
-@@ -753,15 +751,8 @@ drawbar(Monitor *m)
+@@ -752,15 +750,8 @@ drawbar(Monitor *m)
  	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
  
  	if ((w = m->ww - tw - x) > bh) {
@@ -80,7 +80,7 @@ index c1a2ce4..c41e41b 100644
  	}
  	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
  }
-@@ -1217,11 +1208,8 @@ propertynotify(XEvent *e)
+@@ -1226,11 +1217,8 @@ propertynotify(XEvent *e)
  			drawbars();
  			break;
  		}
@@ -93,7 +93,7 @@ index c1a2ce4..c41e41b 100644
  		if (ev->atom == netatom[NetWMWindowType])
  			updatewindowtype(c);
  	}
-@@ -1604,7 +1592,7 @@ setup(void)
+@@ -1620,7 +1608,7 @@ setup(void)
  	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
  		die("no fonts could be loaded.");
  	lrpad = drw->fonts->h;
