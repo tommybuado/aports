@@ -1,7 +1,7 @@
 # Contributor: Tommy Buado <tommy@thinkpad.local>
 # Maintainer: Tommy Buado <tommy@thinkpad.local>
 pkgname=dmenu
-pkgver=5.2
+pkgver=5.3
 pkgrel=1
 pkgdesc="A dynamic menu for X"
 url="https://tools.suckless.org/dmenu/"
@@ -37,9 +37,9 @@ package() {
 }
 
 sha512sums="
-7be9bb76b11225ec86a30e643e9b884f6d13af581526085212cb7401383d448a72fe4dffc3ce84ffb8319dbf36ca8384597a89070cd27d39d5618f239a2da6e3  dmenu-5.2.tar.gz
+60f758134063ad7f304fbb0785c66dddc21461e5e5014f8735cf6d5c95dc22a177f069d48101e633ddffe5bbefc1118a2bf8b31daaf7b6438fdf6fe1bcb5d61c  dmenu-5.3.tar.gz
 adf9962dc0abd44800568c5415f2d016c54c1f2f09eef5f44e480e9979c7fbe3966e849c9b0ce660f2b63adfcf729095d7911b5c39876de8288374723a5b2664  config.h
-ff72bca7e9370d870b5b9e8f8f98701a58842f926f936224816933fbd54977b7253a09f67ca4ed64c544e52ca36570232151aa1d17b574f4bcf7dfe40a7581c6  0001-Highlight-the-individual-characters-of-matched-text.patch
-5b8a3199cc8920d7d42b59605609be13be2403f4797acae738cfb1e2d23e26a80b57947dbdeb69f01bb9d430b34b103504a82888692f93448f2e9b03d8adba22  0002-Allow-user-to-change-bar-height-that-respect-the-DPI.patch
-2fee3d01853e32bfc194d291b55ebb9a0f52fe5927ae840cebc63d43b9dc8d8ac6349edcb2c3ac73d62138449c68a96802f89fa7e816f29ece91df33b5b3b8f9  0003-Remove-navigation-arrows-in-dmenu.patch
+d6ac5cea1c9b4be8e400813f45a9caf93e26da0024cd7c1412c3218480b034da17e4a35042ce2d8bd00e32d796721e11245a72ac26d6904a41d7876cdbce96b4  0001-Highlight-the-individual-characters-of-matched-text.patch
+0cb8dc8c50d0270b877842446cecd68e05487fbfc72d5f2e68dc7187eb569880aa34b912cfe7c22d340d5f0c50532e1d1badee494c9a2703be522802a3e63afd  0002-Allow-user-to-change-bar-height-that-respect-the-DPI.patch
+1f0af357f535dbefb8a37185935fd441dd91d07dd51837c61b032299880377a6acb1bfbeb47febb3c5c9df56a6b86a27b1df3bf6db8c64020174cae1fc00e210  0003-Remove-navigation-arrows-in-dmenu.patch
 "

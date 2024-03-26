@@ -1,4 +1,4 @@
-From 029f7c991756ad2d2046644a8703d8c5a94dd058 Mon Sep 17 00:00:00 2001
+From c40df488c29a0284ff30bd28315317c2782231c5 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 10:40:05 +0800
 Subject: [PATCH 3/3] Remove navigation arrows in dmenu
@@ -8,10 +8,10 @@ Subject: [PATCH 3/3] Remove navigation arrows in dmenu
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/dmenu.c b/dmenu.c
-index 1a3f326..ec03f13 100644
+index 53de278..54821d8 100644
 --- a/dmenu.c
 +++ b/dmenu.c
-@@ -214,18 +214,18 @@ drawmenu(void)
+@@ -213,18 +213,18 @@ drawmenu(void)
  	} else if (matches) {
  		/* draw horizontal list */
  		x += inputw;

@@ -1,7 +1,7 @@
-From bd772668944c7760ec6c58a51d481f8afdf9f1e7 Mon Sep 17 00:00:00 2001
+From 7471022ede1153d18a5cbf50f3aa3a66c87007b4 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 10:33:40 +0800
-Subject: [PATCH 2/2] Allow user to change bar height that respect the DPI
+Subject: [PATCH 2/3] Allow user to change bar height that respect the DPI
 
 ---
  config.def.h | 22 +++++++++++++---------
@@ -50,10 +50,10 @@ index 79be73a..b58a679 100644
  /*
   * Characters not considered part of a word while deleting words
 diff --git a/dmenu.c b/dmenu.c
-index cf2eada..1a3f326 100644
+index e58a3b2..53de278 100644
 --- a/dmenu.c
 +++ b/dmenu.c
-@@ -668,7 +668,7 @@ setup(void)
+@@ -672,7 +672,7 @@ setup(void)
  	utf8 = XInternAtom(dpy, "UTF8_STRING", False);
  
  	/* calculate menu geometry */
