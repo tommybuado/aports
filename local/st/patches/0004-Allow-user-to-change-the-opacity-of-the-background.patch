@@ -1,4 +1,4 @@
-From 89ed069b48b91861803c9fbda081b7eddf43b42a Mon Sep 17 00:00:00 2001
+From 07bd4712afdfc71105e48095f2149f57ce3365d8 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Sat, 2 Mar 2024 01:33:50 +0800
 Subject: [PATCH 4/4] Allow user to change the opacity of the background
@@ -11,7 +11,7 @@ Subject: [PATCH 4/4] Allow user to change the opacity of the background
  4 files changed, 35 insertions(+), 11 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index 7bb3ff7..b21027b 100644
+index a7a3414..ab4577d 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -105,6 +105,9 @@ char *termname = "st-256color";
@@ -25,7 +25,7 @@ index 7bb3ff7..b21027b 100644
  static const char *colorname[] = {
  	/* 8 normal colors */
 diff --git a/config.mk b/config.mk
-index 1e306f8..47c615e 100644
+index 7f35f71..7c3bf9b 100644
 --- a/config.mk
 +++ b/config.mk
 @@ -16,7 +16,7 @@ PKG_CONFIG = pkg-config
@@ -47,7 +47,7 @@ index 808f5f7..6d0c41e 100644
  extern const int boxdraw, boxdraw_bold, boxdraw_braille;
 +extern float alpha;
 diff --git a/x.c b/x.c
-index d669e32..4dd1a4b 100644
+index cfb521d..3d24859 100644
 --- a/x.c
 +++ b/x.c
 @@ -111,6 +111,7 @@ typedef struct {
@@ -146,7 +146,7 @@ index d669e32..4dd1a4b 100644
  	XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
  	XFillRectangle(xw.dpy, xw.buf, dc.gc, 0, 0, win.w, win.h);
  
-@@ -2074,6 +2091,9 @@ main(int argc, char *argv[])
+@@ -2077,6 +2094,9 @@ main(int argc, char *argv[])
  	case 'a':
  		allowaltscreen = 0;
  		break;

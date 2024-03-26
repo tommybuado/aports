@@ -1,7 +1,7 @@
-From 12eddba02e9f362983484e02419477761d964abf Mon Sep 17 00:00:00 2001
+From cf6d1e4338251c67806b76b27cee3b29d2570308 Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 10:11:18 +0800
-Subject: [PATCH 2/2] Allow st to resize, make border dynamic and center the
+Subject: [PATCH 2/4] Allow st to resize, make border dynamic and center the
  content
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 2/2] Allow st to resize, make border dynamic and center the
  1 file changed, 30 insertions(+), 26 deletions(-)
 
 diff --git a/x.c b/x.c
-index bf6bbf9..adc401a 100644
+index fcffc21..16af998 100644
 --- a/x.c
 +++ b/x.c
 @@ -81,6 +81,7 @@ typedef XftGlyphFontSpec GlyphFontSpec;

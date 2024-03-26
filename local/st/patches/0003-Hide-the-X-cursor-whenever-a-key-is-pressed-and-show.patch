@@ -1,7 +1,7 @@
-From 4aef9a5784fb081d5a25e63e97ac0d3ff07d9aac Mon Sep 17 00:00:00 2001
+From c3db736143b30ea1484818138830c9e2edaa8d3a Mon Sep 17 00:00:00 2001
 From: Tommy Buado <tommy@thinkpad.local>
 Date: Fri, 1 Mar 2024 10:19:36 +0800
-Subject: [PATCH 3/3] Hide the X cursor whenever a key is pressed and show it
+Subject: [PATCH 3/4] Hide the X cursor whenever a key is pressed and show it
  back
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 3/3] Hide the X cursor whenever a key is pressed and show it
  1 file changed, 28 insertions(+), 4 deletions(-)
 
 diff --git a/x.c b/x.c
-index adc401a..d669e32 100644
+index 16af998..cfb521d 100644
 --- a/x.c
 +++ b/x.c
 @@ -104,6 +104,11 @@ typedef struct {
