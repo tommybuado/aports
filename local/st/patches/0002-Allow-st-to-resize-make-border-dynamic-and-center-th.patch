@@ -1,0 +1,28 @@
+From c3af811dd77a3aebf35242a471d933c783e97179 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Tue, 2 Jul 2024 03:08:57 +0800
+Subject: [PATCH 2/3] Allow st to resize, make border dynamic and center the
+ content
+
+---
+ x.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/x.c b/x.c
+index 978a8fc..85d8030 100644
+--- a/x.c
++++ b/x.c
+@@ -869,8 +869,8 @@ xhints(void)
+ 	sizeh->flags = PSize | PResizeInc | PBaseSize | PMinSize;
+ 	sizeh->height = win.h;
+ 	sizeh->width = win.w;
+-	sizeh->height_inc = win.ch;
+-	sizeh->width_inc = win.cw;
++	sizeh->height_inc = 1;
++	sizeh->width_inc = 1;
+ 	sizeh->base_height = 2 * borderpx;
+ 	sizeh->base_width = 2 * borderpx;
+ 	sizeh->min_height = win.ch + 2 * borderpx;
+-- 
+2.45.2
+
