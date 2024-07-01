@@ -13,6 +13,7 @@ subpackages="$pkgname-doc $pkgname-dbg"
 options="!check" # no test suite
 source="https://dl.suckless.org/st/st-$pkgver.tar.gz
 	st.desktop
+	config.h
 	patches/0001-Customize-lines-blocks-braille-characters-for-gaples.patch
 	patches/0002-Allow-st-to-resize-make-border-dynamic-and-center-th.patch
 	patches/0003-Hide-the-X-cursor-whenever-a-key-is-pressed-and-show.patch"
@@ -23,6 +24,7 @@ provider_priority=100
 prepare() {
 	default_prepare
 	sed -i "/tic/d" Makefile
+	cp -pr "$srcdir"/config.h config.h
 }
 
 build() {
@@ -38,6 +40,7 @@ package() {
 sha512sums="
 1ca484227189d9e92ffc1092183fdc6a162da8bb41b9c18df662212d49a9551a84c3c87784ae16f2294105776b9d58983f29396bc681e367b761610bd7071b61  st-0.9.2.tar.gz
 ec2a6fcb16147f533a12f7da2718cddaf4382fd7efbb6c296079ace6baf95a827e441a04d50296ab293228cbfd403d09614e8328a98adec9760915c4f52b3095  st.desktop
+b8cee714cab0104e86926136178ccba36f3489f78ba207b7487c54aeb004d8daa9e25ab4b4b006c42f22e5f48a2ec4e3b362a738d0afd27e701c9e4e5788d1bb  config.h
 0bd88e87c7ee56b475ba973078a48535d9d6e4887277b5ad9a3cc2f05c9d6b0640baf3330ca881b8914131a49f412de702302b01d95897a7140da5e51937f004  0001-Customize-lines-blocks-braille-characters-for-gaples.patch
 848d0ba8682d546dae9bf258ab3186111a6e6a1f8fbc47e62c370bbf9fe247f3a3aa429674d2c93a6f3976c8bbc5ca273278674680118d74bee50e9d8fb891cb  0002-Allow-st-to-resize-make-border-dynamic-and-center-th.patch
 4431c52752bd0e4a49aa4b104b0670fd0135eb17997a4bb277dc21a564ea194dd71a7d20573c2b47f2f8698d7e59214f632905cea6cb75922d51cb909fe258e6  0003-Hide-the-X-cursor-whenever-a-key-is-pressed-and-show.patch
