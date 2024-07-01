@@ -1,0 +1,40 @@
+From 1484bc82c0f00867f0d0785b8a872657dddbaa18 Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Tue, 2 Jul 2024 03:52:00 +0800
+Subject: [PATCH 2/3] Allow user to change bar height that respects the DPI
+
+---
+ config.def.h | 3 ++-
+ dmenu.c      | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 79be73a..08c2451 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,7 +1,8 @@
+ /* See LICENSE file for copyright and license details. */
+ /* Default settings; can be overriden by command line. */
+ 
+-static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
++static const int bar_spacing = 2;        /* 2 is the default spacing around the bar's font */
++static int topbar = 1;                   /* -b  option; if 0, dmenu appears at bottom     */
+ /* -fn option overrides fonts[0]; default X11 font or font set */
+ static const char *fonts[] = {
+ 	"monospace:size=10"
+diff --git a/dmenu.c b/dmenu.c
+index e0ceee3..5926a75 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -673,7 +673,7 @@ setup(void)
+ 	utf8 = XInternAtom(dpy, "UTF8_STRING", False);
+ 
+ 	/* calculate menu geometry */
+-	bh = drw->fonts->h + 2;
++	bh = drw->fonts->h + bar_spacing;
+ 	lines = MAX(lines, 0);
+ 	mh = (lines + 1) * bh;
+ #ifdef XINERAMA
+-- 
+2.45.2
+
