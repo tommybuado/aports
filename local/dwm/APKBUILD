@@ -14,7 +14,10 @@ options="!check" # no test suite
 source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	dwm.desktop
 	patches/0001-Make-dwm-run-autostart-scripts-before-entering-handl.patch
-	patches/0002-Switch-focus-only-by-mouse-click-and-not-sloppy.patch"
+	patches/0002-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
+	patches/0003-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
+	patches/0004-Remove-unnecessary-window-tile-for-dwm.patch
+	patches/0005-Always-display-monocle-symbol-if-the-layout-is-activ.patch"
 
 provides="dwm-virtual"
 provider_priority=100
@@ -42,4 +45,7 @@ sha512sums="
 8d8a3f3e2b285dfce17da9cf4173b4841d0d7465112a1b2478d417dfb9c0b37ae98542c710464fcf0fdbe8fcef5a502f88a88a115d5c1717cf429f84797337dd  dwm.desktop
 7989f6296b5bd567e2e1c4e607dfd7f3641d96021d8b9d5ae46799676f9af4792cfb9cd622ee55283b1560912dc71524ded3ebfd1d62362631fd56b7b4055906  0001-Make-dwm-run-autostart-scripts-before-entering-handl.patch
 030b687317f525ed1d54ec18a7182a18f4a798488d2a6f1b5f276824c14a48c0370e53341154ce236d691e140fbeebe02ff57fe542f8affd28bb74618c6b0f0f  0002-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
+622725f424015375123b280f76e85fc3e3df8dcdee15d5e959b43c6f86a4ce4c80bdc878a43518352c6991161760fb94eba0872286dcc785637692fe8affe90b  0003-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
+b575c59e0d7269b8f80dd1666f21cfccb348b1afebbdc5eb4bd72feb18bb01a4b56618d4c367ada15d97a8c01bde34c9bccfd92d2e73cdfd0ed8ab9e088697e1  0004-Remove-unnecessary-window-tile-for-dwm.patch
+5388668f2d452b40bbe561e1afaf714509602a0c2dcc02b7c71bca764c2e6d6b22740337009cef72b06ace4035479070a8fa1411d29982823e8b55e0304556c8  0005-Always-display-monocle-symbol-if-the-layout-is-activ.patch
 "
