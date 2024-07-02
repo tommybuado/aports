@@ -17,7 +17,9 @@ source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	patches/0002-Switch-focus-only-by-mouse-click-and-not-sloppy.patch
 	patches/0003-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
 	patches/0004-Remove-unnecessary-window-tile-for-dwm.patch
-	patches/0005-Always-display-monocle-symbol-if-the-layout-is-activ.patch"
+	patches/0005-Always-display-monocle-symbol-if-the-layout-is-activ.patch
+	patches/0006-Activate-window-as-response-to-client-requests-_NET_.patch
+	patches/0007-Add-rule-option-to-switch-to-the-configured-tag-when.patch"
 
 provides="dwm-virtual"
 provider_priority=100
@@ -48,4 +50,6 @@ sha512sums="
 622725f424015375123b280f76e85fc3e3df8dcdee15d5e959b43c6f86a4ce4c80bdc878a43518352c6991161760fb94eba0872286dcc785637692fe8affe90b  0003-Keep-layout-mwfact-barpos-and-nmaster-per-tag.patch
 b575c59e0d7269b8f80dd1666f21cfccb348b1afebbdc5eb4bd72feb18bb01a4b56618d4c367ada15d97a8c01bde34c9bccfd92d2e73cdfd0ed8ab9e088697e1  0004-Remove-unnecessary-window-tile-for-dwm.patch
 5388668f2d452b40bbe561e1afaf714509602a0c2dcc02b7c71bca764c2e6d6b22740337009cef72b06ace4035479070a8fa1411d29982823e8b55e0304556c8  0005-Always-display-monocle-symbol-if-the-layout-is-activ.patch
+6cfb1fac7cf25c4c7a565f78a583b5ecd35134fb5b05e93f437ccfed62911daeeb95de2201155f7f095cb9d5f0edba4fe78aaf3e1d5de5fc1a015b770363cc22  0006-Activate-window-as-response-to-client-requests-_NET_.patch
+d3faa20c373ba2f3be93b4bd6f63b2ddf50ce0842da41424c829ea42ae7c46198c880419c4f7154f544f80204a3ae90c73b0e143d7094687d6bfb1357b2527f7  0007-Add-rule-option-to-switch-to-the-configured-tag-when.patch
 "

@@ -1,0 +1,74 @@
+From 5f88eefb3b860ddf7ffda7b27e8d306119d233be Mon Sep 17 00:00:00 2001
+From: Tommy Buado <tommy@thinkpad.local>
+Date: Tue, 2 Jul 2024 16:36:36 +0800
+Subject: [PATCH 7/7] Add rule option to switch to the configured tag when a
+ window opens
+
+---
+ config.def.h |  6 +++---
+ dwm.c        | 11 +++++++++++
+ 2 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 52eb132..fce0ea6 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -27,9 +27,9 @@ static const Rule rules[] = {
+ 	 *	WM_CLASS(STRING) = instance, class
+ 	 *	WM_NAME(STRING) = title
+ 	 */
+-	/* class      instance    title       tags mask     isfloating   monitor */
+-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
++	/* class         instance    title       tags mask     switchtotag    isfloating   monitor */
++	{ "st-256color", NULL,       NULL,       1,            0,             0,           -1 },
++	{ "Chromium",    NULL,       NULL,       2,            0,             0,           -1 },
+ };
+ 
+ /* layout(s) */
+diff --git a/dwm.c b/dwm.c
+index 9ccb394..6d1d2c1 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -93,6 +93,7 @@ struct Client {
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
+ 	int bw, oldbw;
+ 	unsigned int tags;
++	unsigned int switchtotag;
+ 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+ 	Client *next;
+ 	Client *snext;
+@@ -140,6 +141,7 @@ typedef struct {
+ 	const char *instance;
+ 	const char *title;
+ 	unsigned int tags;
++	unsigned int switchtotag;
+ 	int isfloating;
+ 	int monitor;
+ } Rule;
+@@ -315,6 +317,11 @@ applyrules(Client *c)
+ 			for (m = mons; m && m->num != r->monitor; m = m->next);
+ 			if (m)
+ 				c->mon = m;
++			if (r->switchtotag) {
++				Arg a = { .ui = r->tags };
++				c->switchtotag = selmon->tagset[selmon->seltags];
++				view(&a);
++			}
+ 		}
+ 	}
+ 	if (ch.res_class)
+@@ -1878,6 +1885,10 @@ unmanage(Client *c, int destroyed)
+ 		XSetErrorHandler(xerror);
+ 		XUngrabServer(dpy);
+ 	}
++	if (c->switchtotag) {
++		Arg a = { .ui = c->switchtotag };
++		view(&a);
++	}
+ 	free(c);
+ 	focus(NULL);
+ 	updateclientlist();
+-- 
+2.45.2
+
