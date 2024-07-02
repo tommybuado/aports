@@ -19,7 +19,9 @@ source="https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	patches/0004-Remove-unnecessary-window-tile-for-dwm.patch
 	patches/0005-Always-display-monocle-symbol-if-the-layout-is-activ.patch
 	patches/0006-Activate-window-as-response-to-client-requests-_NET_.patch
-	patches/0007-Add-rule-option-to-switch-to-the-configured-tag-when.patch"
+	patches/0007-Add-rule-option-to-switch-to-the-configured-tag-when.patch
+	patches/0008-Allow-user-to-change-bar-height-that-respects-the-DP.patch
+	patches/0009-Allow-colors-and-rectangle-drawings-for-dwm.patch"
 
 provides="dwm-virtual"
 provider_priority=100
@@ -52,4 +54,6 @@ b575c59e0d7269b8f80dd1666f21cfccb348b1afebbdc5eb4bd72feb18bb01a4b56618d4c367ada1
 5388668f2d452b40bbe561e1afaf714509602a0c2dcc02b7c71bca764c2e6d6b22740337009cef72b06ace4035479070a8fa1411d29982823e8b55e0304556c8  0005-Always-display-monocle-symbol-if-the-layout-is-activ.patch
 6cfb1fac7cf25c4c7a565f78a583b5ecd35134fb5b05e93f437ccfed62911daeeb95de2201155f7f095cb9d5f0edba4fe78aaf3e1d5de5fc1a015b770363cc22  0006-Activate-window-as-response-to-client-requests-_NET_.patch
 d3faa20c373ba2f3be93b4bd6f63b2ddf50ce0842da41424c829ea42ae7c46198c880419c4f7154f544f80204a3ae90c73b0e143d7094687d6bfb1357b2527f7  0007-Add-rule-option-to-switch-to-the-configured-tag-when.patch
+fb21ce5d3738f82d89589bf770864fdcb9c0a5c268fa0a851d917af2325ae44e846fe84bc4d03f98dab75922a5f0feac3ad27a9a19ab71b0b548e8234da00a6f  0008-Allow-user-to-change-bar-height-that-respects-the-DP.patch
+c419d219a4efc6ac46685067fcea5a42e6964e1a7410c2f4f3e418d6520ef2773881c63405d8faafb66246385b22b3b022dc97b10dd56f616ae602b3e6bbb275  0009-Allow-colors-and-rectangle-drawings-for-dwm.patch
 "
