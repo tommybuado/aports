@@ -1,0 +1,29 @@
+# Contributor: Tommy Buado <tommy@thinkpad.local>
+# Maintainer: Tommy Buado <tommy@thinkpad.local>
+pkgname=font-roboto
+pkgver=20240702
+pkgrel=0
+pkgdesc="The Roboto Font Family from Google"
+url="https://fonts.google.com/"
+arch="noarch"
+license="Apache-2.0"
+depends="fontconfig mkfontscale"
+options="!check" # no test suite
+source="$pkgname-v$pkgver.tar.gz 45-roboto.conf LICENSE"
+
+package() {
+	install -Dm644 "$srcdir"/Roboto/*.ttf -t "$pkgdir"/usr/share/fonts/roboto/
+	install -Dm644 "$srcdir"/LICENSE -t "$pkgdir"/usr/share/licenses/$pkgname/
+
+	cd "$pkgdir"
+
+	install -Dm644 "$srcdir"/45-roboto.conf -t etc/fonts/conf.avail/
+	mkdir -p etc/fonts/conf.d
+	ln -s ../conf.avail/45-roboto.conf etc/fonts/conf.d/
+}
+
+sha512sums="
+cd41f158b141d65a4503fcb87d2a7eed8afd80fab9bd05da00f45f50c21b5e59b1eec25da7ce31fbc5c5cb3319d91caf42d99f75feb769a1e474e82e410aea63  font-roboto-v20240702.tar.gz
+c75e82d77ae4f722e8c1fb99f825538faf2202713a621f1462ce01932f27a3fe2b03c30fa0f5cd19154679c701b89455e4899509f54f926df15875af073063c6  45-roboto.conf
+4cc5a12bfe984c0a50bf7943e2d70a948d520ef423677c77629707aace3a95aa378d205de929105d644680679e70ef2449479b360ad44896b75bafed66613272  LICENSE
+"
